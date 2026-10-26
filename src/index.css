@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #FBFBFA;
+    color: #141414;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+    letter-spacing: -0.025em;
+  }
+
+  .font-outfit,
+  .font-outfit * {
+    font-family: 'Outfit', sans-serif;
+  }
+}
+
+/* Custom scrollbar and smooth UI details */
+::selection {
+  background-color: #e5e5e0;
+  color: #111111;
+}
+
+/* Prevent text caret and cursor on screen click */
+body, header, main, div, section, article, p, h1, h2, h3, h4, h5, h6, span {
+  caret-color: transparent;
+}
+
+input, textarea, [contenteditable="true"] {
+  caret-color: auto;
+}
+
+/* Subtle glassmorphism and backdrop filter */
+.glass-nav {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background-color: rgba(251, 251, 250, 0.85);
+}
+
+/* Hide native video controls & PiP UI */
+video::-webkit-media-controls {
+  display: none !important;
+}
+video::-webkit-media-controls-enclosure {
+  display: none !important;
+}
+video::-webkit-media-controls-panel {
+  display: none !important;
+}

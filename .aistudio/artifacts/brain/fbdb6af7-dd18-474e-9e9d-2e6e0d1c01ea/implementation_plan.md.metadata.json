@@ -1,0 +1,6 @@
+{
+  "summary":  "Replaced Login button with the attached pill-shaped design and wired it to invoke the AuthModal login screen on click.",
+  "updatedAt":  "2026-10-25T07:07:22.252686089Z",
+  "requestFeedback":  true,
+  "userFacing":  true
+}
