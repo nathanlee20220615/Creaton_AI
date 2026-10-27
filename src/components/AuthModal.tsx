@@ -52,14 +52,21 @@ export const AuthModal: React.FC<AuthModalProps> = ({
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
+        <div
+          style={{
+            backgroundColor: 'rgba(24, 24, 30, 0.5)',
+            backdropFilter: 'blur(8px)',
+            WebkitBackdropFilter: 'blur(8px)',
+          }}
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 backdrop-blur-md"
+        >
           {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={handleReset}
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm"
+            className="fixed inset-0"
           />
 
           {/* Modal Card */}

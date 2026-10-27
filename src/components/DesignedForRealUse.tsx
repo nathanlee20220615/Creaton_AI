@@ -1,28 +1,31 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Shield, Heart, Palette, RotateCw, Cpu, Layers } from 'lucide-react';
+import { Shield, Heart, Palette, Cpu, Layers, CheckCircle2 } from 'lucide-react';
 
 export const DesignedForRealUse: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'features' | '360' | 'anatomy'>('features');
-  const [rotationAngle, setRotationAngle] = useState(0);
+  const [activeTab, setActiveTab] = useState<'features' | 'anatomy' | null>('anatomy');
+
+  const handleTabClick = (tab: 'features' | 'anatomy') => {
+    setActiveTab((prev) => (prev === tab ? null : tab));
+  };
 
   const cards = [
     {
-      title: 'Your privacy is protected',
+      title: 'Real-time 3D space',
       text: 'Memo is an autonomous robot that does not need to learn through human tele-operation. Instead, we obtain training data from our Memory Developers wearing our Skill Capture Glove™.',
-      image: '/assets/memo/card_privacy.jpg',
+      image: '/assets/aistudio/image_a5972d26.png',
       icon: Shield
     },
     {
-      title: 'Safety for the whole family',
+      title: 'Intuitive Selection',
       text: 'With a low center of gravity, stable wheelbase, and a lightweight body, Memo is safe for small members of the home.',
-      image: '/assets/memo/card_safety.jpg',
+      image: '/assets/aistudio/image_532249a2.png',
       icon: Heart
     },
     {
-      title: 'Tailored to your home',
+      title: 'Accurate reflection of intent',
       text: 'Customize Memo to fit your aesthetic. Choose from a selection of colorways and materials that blend with your interior.',
-      image: '/assets/memo/card_tailored.jpg',
+      image: '/assets/aistudio/image_47c6e0b7.png',
       icon: Palette
     }
   ];
@@ -89,79 +92,82 @@ export const DesignedForRealUse: React.FC = () => {
       <div className="mt-14 flex justify-center">
         <div className="inline-flex items-center gap-1 p-1.5 rounded-full bg-neutral-100 border border-neutral-200/80 shadow-inner">
           <button
-            onClick={() => setActiveTab('features')}
+            onClick={() => handleTabClick('features')}
             className={`px-5 py-2 text-xs font-semibold rounded-full transition-all cursor-pointer ${
               activeTab === 'features'
                 ? 'bg-white text-neutral-900 shadow-sm'
                 : 'text-neutral-500 hover:text-neutral-900'
             }`}
           >
-            Features
+            Summary
           </button>
           <button
-            onClick={() => setActiveTab('360')}
-            className={`flex items-center gap-1.5 px-5 py-2 text-xs font-semibold rounded-full transition-all cursor-pointer ${
-              activeTab === '360'
-                ? 'bg-white text-neutral-900 shadow-sm'
-                : 'text-neutral-500 hover:text-neutral-900'
-            }`}
-          >
-            <span>360°</span>
-            <RotateCw size={12} className={activeTab === '360' ? 'animate-spin' : ''} />
-          </button>
-          <button
-            onClick={() => setActiveTab('anatomy')}
+            onClick={() => handleTabClick('anatomy')}
             className={`px-5 py-2 text-xs font-semibold rounded-full transition-all cursor-pointer ${
               activeTab === 'anatomy'
                 ? 'bg-white text-neutral-900 shadow-sm'
                 : 'text-neutral-500 hover:text-neutral-900'
             }`}
           >
-            Anatomy
+            Grid
           </button>
         </div>
       </div>
 
       {/* Tab Content Display */}
       <AnimatePresence mode="wait">
-        {activeTab === '360' && (
+        {activeTab === 'features' && (
           <motion.div
-            key="360"
+            key="features"
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -15 }}
-            className="mt-8 max-w-2xl mx-auto rounded-3xl bg-neutral-900 text-white p-8 text-center shadow-xl border border-white/10"
+            transition={{ duration: 0.3 }}
+            className="mt-8 max-w-3xl mx-auto rounded-3xl bg-[#F4F4F0] p-8 border border-neutral-200/80 shadow-sm"
           >
-            <div className="text-xs uppercase font-mono tracking-widest text-amber-400 mb-2">
-              Interactive 360° Perspective
+            <div className="text-xs uppercase font-mono tracking-widest text-neutral-400 mb-2 text-center">
+              System Capabilities
             </div>
-            <h4 className="text-xl font-display font-medium">Turntable Examination</h4>
-            <div className="relative my-6 aspect-video rounded-2xl bg-black/60 overflow-hidden flex items-center justify-center border border-white/5">
-              <img
-                src="/assets/memo/card_safety.jpg"
-                alt="Memo 360 View"
-                className="h-full w-full object-cover transition-transform duration-300"
-                style={{ transform: `rotate(${rotationAngle}deg) scale(1.1)` }}
-              />
-              <div className="absolute inset-0 bg-black/30 flex items-center justify-center pointer-events-none">
-                <span className="text-xs font-mono bg-black/70 px-3 py-1 rounded-full text-white/90">
-                  Angle: {rotationAngle}°
-                </span>
+            <h4 className="text-xl font-display font-medium text-center text-neutral-900 mb-6">
+              Amazing Features & Active Intelligence
+            </h4>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+              <div className="p-4 rounded-2xl bg-white border border-neutral-200 space-y-1">
+                <div className="font-semibold text-neutral-900 flex items-center gap-1.5">
+                  <Shield size={14} className="text-neutral-500" />
+                  Scene JSON Standardization
+                </div>
+                <div className="text-neutral-500">
+                  Manage scene information such as space, camera, lighting, and actors using standardized data to ensure consistency in settings and ease of editing.
+                </div>
               </div>
-            </div>
-            <div className="flex items-center justify-center gap-4">
-              <button
-                onClick={() => setRotationAngle((a) => (a - 45 + 360) % 360)}
-                className="px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 text-xs font-medium transition-colors"
-              >
-                ⟲ Rotate Left
-              </button>
-              <button
-                onClick={() => setRotationAngle((a) => (a + 45) % 360)}
-                className="px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 text-xs font-medium transition-colors"
-              >
-                ⟳ Rotate Right
-              </button>
+              <div className="p-4 rounded-2xl bg-white border border-neutral-200 space-y-1">
+                <div className="font-semibold text-neutral-900 flex items-center gap-1.5">
+                  <Cpu size={14} className="text-neutral-500" />
+                  AI API Integration and Automation
+                </div>
+                <div className="text-neutral-500">
+                  Increase system scalability and efficiency by automatically distributing tasks among AI models and managing execution through an orchestrator.
+                </div>
+              </div>
+              <div className="p-4 rounded-2xl bg-white border border-neutral-200 space-y-1">
+                <div className="font-semibold text-neutral-900 flex items-center gap-1.5">
+                  <Layers size={14} className="text-neutral-500" />
+                  Ensure scene consistency
+                </div>
+                <div className="text-neutral-500">
+                  Maintain settings such as cameras, actors, and lighting based on spatial coordinates and timelines to ensure visual and temporal continuity between scenes.
+                </div>
+              </div>
+              <div className="p-4 rounded-2xl bg-white border border-neutral-200 space-y-1">
+                <div className="font-semibold text-neutral-900 flex items-center gap-1.5">
+                  <CheckCircle2 size={14} className="text-neutral-500" />
+                  Automatic Quality Verification and Reproduction
+                </div>
+                <div className="text-neutral-500">
+                  Automatically validate the generated results and selectively regenerate only the problematic elements to reduce production costs and time.
+                </div>
+              </div>
             </div>
           </motion.div>
         )}
@@ -172,52 +178,14 @@ export const DesignedForRealUse: React.FC = () => {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -15 }}
-            className="mt-8 max-w-3xl mx-auto rounded-3xl bg-[#F4F4F0] p-8 border border-neutral-200/80 shadow-sm"
+            transition={{ duration: 0.3 }}
+            className="mt-8 max-w-4xl mx-auto rounded-3xl bg-[#F4F4F0] p-4 sm:p-6 lg:p-8 border border-neutral-200/80 shadow-sm overflow-hidden flex items-center justify-center"
           >
-            <div className="text-xs uppercase font-mono tracking-widest text-neutral-400 mb-2 text-center">
-              Hardware Architecture
-            </div>
-            <h4 className="text-xl font-display font-medium text-center text-neutral-900 mb-6">
-              Memo Anatomy & Spec Sheet
-            </h4>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
-              <div className="p-4 rounded-2xl bg-white border border-neutral-200 space-y-1">
-                <div className="font-semibold text-neutral-900 flex items-center gap-1.5">
-                  <Cpu size={14} className="text-neutral-500" />
-                  Dual 7-DoF Compliant Arms
-                </div>
-                <div className="text-neutral-500">
-                  Carbon fiber composite with back-drivable planetary gears for zero pinch hazards.
-                </div>
-              </div>
-              <div className="p-4 rounded-2xl bg-white border border-neutral-200 space-y-1">
-                <div className="font-semibold text-neutral-900 flex items-center gap-1.5">
-                  <Shield size={14} className="text-neutral-500" />
-                  On-Device Privacy Engine
-                </div>
-                <div className="text-neutral-500">
-                  Custom neural inference unit running real-time vision without cloud transmission.
-                </div>
-              </div>
-              <div className="p-4 rounded-2xl bg-white border border-neutral-200 space-y-1">
-                <div className="font-semibold text-neutral-900 flex items-center gap-1.5">
-                  <Layers size={14} className="text-neutral-500" />
-                  Low-Center Gyro Wheelbase
-                </div>
-                <div className="text-neutral-500">
-                  Ultra-stable omnidirectional wheels that glide over thresholds and dense carpets.
-                </div>
-              </div>
-              <div className="p-4 rounded-2xl bg-white border border-neutral-200 space-y-1">
-                <div className="font-semibold text-neutral-900 flex items-center gap-1.5">
-                  <Palette size={14} className="text-neutral-500" />
-                  Textile & Ceramic Swatches
-                </div>
-                <div className="text-neutral-500">
-                  Removable outer magnetic panels in Warm Travertine, Slate Wool, and Terracotta.
-                </div>
-              </div>
-            </div>
+            <img
+              src="/assets/aistudio/features_page__06_4c7fe018.png"
+              alt="Convenient modular UI structure"
+              className="w-full h-auto rounded-2xl object-contain shadow-xs"
+            />
           </motion.div>
         )}
       </AnimatePresence>

@@ -144,9 +144,10 @@ export const DetailWorkspace: React.FC<DetailWorkspaceProps> = ({ onBackToHome, 
       <div className="flex flex-1 overflow-hidden font-outfit" style={{ fontFamily: "'Outfit', sans-serif" }}>
         {/* ================= LEFT SIDEBAR ================= */}
         <aside
+          style={{ backgroundColor: '#18181e' }}
           className={`${
             isCollapsed ? 'w-[68px]' : 'w-60'
-          } shrink-0 border-r border-[#1a1a1f] bg-[#070709] flex flex-col justify-between select-none overflow-x-hidden overflow-y-auto px-3 py-3.5 transition-[width] duration-300 ease-in-out will-change-[width]`}
+          } shrink-0 border-r border-[#1a1a1f] bg-[#18181e] flex flex-col justify-between select-none overflow-x-hidden overflow-y-auto px-3 py-3.5 transition-[width] duration-300 ease-in-out will-change-[width]`}
         >
           {/* Top Brand & Main Nav */}
           <div>
@@ -344,8 +345,17 @@ export const DetailWorkspace: React.FC<DetailWorkspaceProps> = ({ onBackToHome, 
 
         {/* ================= MAIN CONTENT AREA ================= */}
         <main
-          className="flex-1 flex flex-col min-w-0 bg-[#070709] overflow-y-auto select-none outline-none caret-transparent cursor-default"
-          style={{ userSelect: 'none', WebkitUserSelect: 'none', caretColor: 'transparent', outline: 'none' }}
+          className="flex-1 flex flex-col min-w-0 bg-[#070709] bg-cover bg-center bg-no-repeat overflow-y-auto select-none outline-none caret-transparent cursor-default"
+          style={{
+            backgroundImage: "url('/assets/aistudio/creato_wall_page_ff996149.png')",
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            userSelect: 'none',
+            WebkitUserSelect: 'none',
+            caretColor: 'transparent',
+            outline: 'none',
+          }}
         >
           {/* Top Bar matching screenshot */}
           <header
@@ -525,7 +535,14 @@ export const DetailWorkspace: React.FC<DetailWorkspaceProps> = ({ onBackToHome, 
 
       {/* New Project Creator Modal */}
       {isCreateModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm">
+        <div
+          style={{
+            backgroundColor: 'rgba(24, 24, 30, 0.5)',
+            backdropFilter: 'blur(8px)',
+            WebkitBackdropFilter: 'blur(8px)',
+          }}
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 backdrop-blur-md"
+        >
           <div className="relative w-full max-w-md rounded-2xl bg-[#121216] border border-neutral-800 p-6 text-white shadow-2xl">
             <button
               onClick={() => setIsCreateModalOpen(false)}
